@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аэропорт СкайВэй</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="logo">
+                    <img class="logo-icon" src="iconskyway/logo.png" alt="Логотип СкайВэй">
+                    <span>Аэропорт СкайВэй</span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <a href="#flights">Рейсы</a>
+                <a href="#map">Карта аэропорта</a>
+                <a href="#guides">Путеводители</a>
+                <a href="#services">Услуги</a>
+            </div>
+            <div class="navbar-end">
+				<div class="search-container">
+					<input type="text" id="searchInput" placeholder="Поиск рейсов, услуг..." class="search-input">
+					<button class="search-button">
+						<img class="search-icon" src="iconskyway/search.svg" alt="Поиск">
+					</button>
+				</div>
+				<button class="book-flight">Забронировать рейс</button>
+			</div>
+        </div>
+    </nav>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Добро пожаловать в Международный Аэропорт СкайВэй</h1>
+            <p>Ваши ворота к исключительным путешествиям. Откройте для себя мир удобства, комфорта и связи.</p>
+            <div class="hero-buttons">
+                <button class="check-flight">Проверить статус рейса</button>
+                <button class="watch-tour" onclick="scrollToGuides()">
+                    <img class="play-icon" src="iconskyway/play.png" alt="Воспроизвести">
+                    Посмотреть тур по аэропорту
+                </button>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L60 10C120 20 240 40 360 50C480 60 600 60 720 50C840 40 960 20 1080 15C1200 10 1320 20 1380 25L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Табло рейсов -->
+    <section id="flights" class="flights">
+        <div class="container">
+            <h2>Информация о рейсах</h2>
+            <p>Информация о прилетах и вылетах в реальном времени</p>
+            
+            <div class="flight-board">
+                <div class="board-header">
+                    <span class="board-title">Информация о рейсах</span>
+                    <span class="board-time" id="currentTime">14:25</span>
+                </div>
+                
+                <div class="board-tabs">
+                    <button class="tab active" onclick="switchTab('departures')">Вылеты</button>
+                    <button class="tab" onclick="switchTab('arrivals')">Прилеты</button>
+                </div>
+
+                <div id="departures" class="board-content active">
+                    <table class="flight-table">
+                        <thead>
+                            <tr>
+                                <th>Рейс</th>
+                                <th>Направление</th>
+                                <th>Время</th>
+                                <th>Терминал</th>
+                                <th>Выход</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BA365</td>
+                                <td>Лондон</td>
+                                <td>14:25</td>
+                                <td>1</td>
+                                <td>B23</td>
+                                <td class="status departed">Вылетел</td>
+                            </tr>
+                            <tr>
+                                <td>LH392</td>
+                                <td>Франкфурт</td>
+                                <td>14:35</td>
+                                <td>2</td>
+                                <td>A12</td>
+                                <td class="status boarding">Посадка</td>
+                            </tr>
+                            <tr>
+                                <td>AF128</td>
+                                <td>Париж</td>
+                                <td>15:00</td>
+                                <td>1</td>
+                                <td>C05</td>
+                                <td class="status registration">Регистрация</td>
+                            </tr>
+                            <tr>
+                                <td>EK231</td>
+                                <td>Дубай</td>
+                                <td>15:45</td>
+                                <td>1</td>
+                                <td>D18</td>
+                                <td class="status delayed">Задержан</td>
+                            </tr>
+                            <tr>
+                                <td>SU102</td>
+                                <td>Москва</td>
+                                <td>16:15</td>
+                                <td>2</td>
+                                <td>B01</td>
+                                <td class="status ontime">По расписанию</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="arrivals" class="board-content">
+                    <table class="flight-table">
+                        <thead>
+                            <tr>
+                                <th>Рейс</th>
+                                <th>Откуда</th>
+                                <th>Время</th>
+                                <th>Терминал</th>
+                                <th>Багаж</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>UA951</td>
+                                <td>Нью-Йорк</td>
+                                <td>14:10</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td class="status arrived">Приземлился</td>
+                            </tr>
+                            <tr>
+                                <td>CX732</td>
+                                <td>Гонконг</td>
+                                <td>14:40</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td class="status delayed">Задержан</td>
+                            </tr>
+                            <tr>
+                                <td>JL045</td>
+                                <td>Токио</td>
+                                <td>15:05</td>
+                                <td>1</td>
+                                <td>8</td>
+                                <td class="status arrived">Прибыл</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карта аэропорта -->
+    <section id="map" class="airport-map">
+		<div class="container">
+			<h2>Интерактивная карта аэропорта</h2>
+			<p>Исследуйте наши терминалы, найдите услуги, магазины, рестораны, парковки и выходы на посадку</p>
+			
+			<div class="map-container">
+				<div class="terminal-tabs">
+					<button class="tab active" data-terminal="t1" onclick="switchTerminal('t1')">Терминал 1</button>
+					<button class="tab" data-terminal="t2" onclick="switchTerminal('t2')">Терминал 2</button>
+				</div>
+				
+				<div class="terminal-map active" id="t1">
+					<img src="photoskyway/terminal1.jpg" alt="Терминал 1">
+					<!-- Магазины -->
+					<div class="map-point" style="top: 30%; left: 20%;" data-title="Duty Free">
+						<span class="point-label">Магазины Duty Free</span>
+					</div>
+					<!-- Рестораны -->
+					<div class="map-point" style="top: 45%; left: 60%;" data-title="Кафе">
+						<span class="point-label">Рестораны и кафе</span>
+					</div>
+					<!-- Парковка -->
+					<div class="map-point parking" style="top: 70%; left: 30%;" data-title="Парковка">
+						<span class="point-label">Парковка Терминала 1</span>
+					</div>
+				</div>
+				
+				<div class="terminal-map" id="t2">
+					<img src="photoskyway/terminal2.jpg" alt="Терминал 2">
+					<!-- Фуд-корт -->
+					<div class="map-point" style="top: 35%; left: 40%;" data-title="Фуд-корт">
+						<span class="point-label">Фуд-корт</span>
+					</div>
+					<!-- Лаунж-зона -->
+					<div class="map-point" style="top: 60%; left: 70%;" data-title="Лаунж-зона">
+						<span class="point-label">Бизнес-лаунж</span>
+					</div>
+					<!-- Парковка -->
+					<div class="map-point parking" style="top: 75%; left: 20%;" data-title="Парковка">
+						<span class="point-label">Парковка Терминала 2</span>
+					</div>
+					<!-- Транспорт -->
+					<div class="map-point transport" style="top: 80%; left: 50%;" data-title="Транспорт">
+						<span class="point-label">Автобусы и такси</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <!-- Путеводители -->
+    <section id="guides" class="guides">
+        <div class="container">
+            <h2>Путеводители и информация</h2>
+            <p>Мультимедийные руководства по аэропорту</p>
+            
+            <div class="video-grid">
+                <div class="video-card" onclick="playVideo('videoskyway/tour.mp4')">
+                    <div class="video-preview">
+                        <img src="photoskyway/video-preview1.jpg" alt="Тур по аэропорту">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <h3>Тур по аэропорту</h3>
+                    <p>Виртуальный тур по основным зонам аэропорта</p>
+                </div>
+                <div class="video-card" onclick="playVideo('videoskyway/security.mp4')">
+                    <div class="video-preview">
+                        <img src="photoskyway/video-preview2.jpg" alt="Процедуры безопасности">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <h3>Процедуры безопасности</h3>
+                    <p>Как пройти проверку безопасности</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для видео -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeVideo()">&times;</span>
+                <div id="videoContainer">
+                    <video id="activeVideo" controls>
+                        <source src="" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Услуги аэропорта</h2>
+            <p>Откройте для себя широкий спектр услуг, доступных для улучшения вашего путешествия</p>
+            
+            <div class="services-grid">
+                <div class="service-card blue">
+                    <div class="service-icon">
+                        <img src="iconskyway/shopping.png" alt="Шоппинг">
+                    </div>
+                    <h3>Шоппинг</h3>
+                    <p>Исследуйте магазины duty-free и розничные магазины</p>
+                    <a href="#" class="learn-more">
+                        Узнать больше
+                        <img class="arrow-icon" src="iconskyway/arrow-right.png" alt="Стрелка">
+                    </a>
+                </div>
+
+                <div class="service-card teal">
+                    <div class="service-icon">
+                        <img src="iconskyway/lounge2.png" alt="Бизнес-залы">
+                    </div>
+                    <h3>Бизнес-залы</h3>
+                    <p>Комфортные залы ожидания для бизнес-пассажиров</p>
+                    <a href="#" class="learn-more">
+                        Узнать больше
+                        <img class="arrow-icon" src="iconskyway/arrow-right2.png" alt="Стрелка">
+                    </a>
+                </div>
+
+                <div class="service-card orange">
+                    <div class="service-icon">
+                        <img src="iconskyway/wifi2.png" alt="Wi-Fi">
+                    </div>
+                    <h3>Wi-Fi</h3>
+                    <p>Бесплатный высокоскоростной интернет</p>
+                    <a href="#" class="learn-more">
+                        Узнать больше
+                        <img class="arrow-icon" src="iconskyway/arrow-right2.png" alt="Стрелка">
+                    </a>
+                </div>
+
+                <div class="service-card blue">
+                    <div class="service-icon">
+                        <img src="iconskyway/bank.png" alt="Банковские услуги">
+                    </div>
+                    <h3>Банковские услуги</h3>
+                    <p>Банкоматы и обмен валюты</p>
+                    <a href="#" class="learn-more">
+                        Узнать больше
+                        <img class="arrow-icon" src="iconskyway/arrow-right.png" alt="Стрелка">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <!-- Заменил логотип в футере -->
+                        <img class="logo-icon" src="iconskyway/logo2.png" alt="Логотип СкайВэй">
+                        <span class="footer-logo-text">Аэропорт СкайВэй</span>
+                    </a>
+                    <p>Ваши ворота к исключительным путешествиям. Соединяем людей и места с комфортом и удобством.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">ВК</a>
+                        <a href="#" class="social-link">Telegram</a>
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+					<h3>Быстрые ссылки</h3>
+					<ul>
+						<li><a href="#flights">Информация о рейсах</a></li>
+						<li><a href="#map">Парковка и транспорт</a></li>
+						<li><a href="#map">Магазины и рестораны</a></li>
+						<li><a href="#guides">Информация о безопасности</a></li>
+					</ul>
+				</div>
+
+                <div class="footer-contact">
+                    <h3>Свяжитесь с нами</h3>
+                    <address>
+                        <p>Международный Аэропорт СкайВэй,<br>улица Авиации 123, Скайвилль</p>
+                        <p>Телефон: +7 (555) 123-4567</p>
+                        <p>Email: info@skywayairport.com</p>
+                    </address>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Международный Аэропорт СкайВэй. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия обслуживания</a>
+                    <a href="#">Политика cookie</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для переключения терминалов
+        function switchTerminal(terminalId) {
+            document.querySelectorAll('.terminal-map').forEach(map => {
+                map.classList.remove('active');
+            });
+            document.querySelectorAll('.terminal-tabs .tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(terminalId).classList.add('active');
+            document.querySelector(`[data-terminal="${terminalId}"]`).classList.add('active');
+        }
+
+        // Функция для прокрутки к путеводителям
+        function scrollToGuides() {
+            document.getElementById('guides').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Функции для работы с видео
+        function playVideo(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('activeVideo');
+            
+            video.src = videoSrc;
+            modal.style.display = 'flex';
+            video.play();
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('activeVideo');
+            
+            video.pause();
+            video.src = '';
+            modal.style.display = 'none';
+        }
+
+        // Обработка точек на карте
+        document.querySelectorAll('.map-point').forEach(point => {
+            point.addEventListener('mouseenter', function() {
+                this.querySelector('.point-label').style.opacity = '1';
+            });
+            
+            point.addEventListener('mouseleave', function() {
+                this.querySelector('.point-label').style.opacity = '0';
+            });
+        });
+
+        // Обновление времени
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.getElementById('currentTime');
+            if (timeElement) {
+                timeElement.textContent = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+        setInterval(updateTime, 60000);
+        updateTime();
+
+        // Переключение вкладок прилетов/вылетов
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.board-tabs .tab');
+            const contents = document.querySelectorAll('.board-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const selectedTab = document.querySelector(`.tab[onclick*="${tabName}"]`);
+            const selectedContent = document.getElementById(tabName);
+            
+            if (selectedTab && selectedContent) {
+                selectedTab.classList.add('active');
+                selectedContent.classList.add('active');
+            }
+        }
+
+        // Плавная прокрутка к путеводителям при нажатии на кнопку
+        document.querySelector('.watch-tour')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('guides')?.scrollIntoView({ behavior: 'smooth' });
+            // Добавим небольшую задержку перед открытием видео
+            setTimeout(() => {
+                playVideo('videoskyway/tour.mp4');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
