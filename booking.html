@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование рейсов | Аэропорт СкайВэй</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">
+                    <img class="logo-icon" src="iconskyway/logo.png" alt="Логотип СкайВэй">
+                    <span>Аэропорт СкайВэй</span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html#flights">Рейсы</a>
+                <a href="index.html#map">Карта аэропорта</a>
+                <a href="index.html#guides">Путеводители</a>
+                <a href="index.html#services">Услуги</a>
+            </div>
+            <div class="navbar-end">
+                <a href="index.html" class="back-to-main">
+                    <img class="home-icon" src="iconskyway/home.svg" alt="На главную">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Форма бронирования -->
+    <section class="booking-hero">
+        <div class="container">
+            <div class="booking-header">
+                <h1>Бронирование рейса</h1>
+                <p>Заполните форму ниже, чтобы забронировать билет</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-form-section">
+        <div class="container">
+            <div class="booking-steps">
+                <div class="step active">1. Выбор рейса</div>
+                <div class="step">2. Пассажиры</div>
+                <div class="step">3. Оплата</div>
+                <div class="step">4. Подтверждение</div>
+            </div>
+
+            <form class="booking-form">
+                <div class="form-section active" id="flight-selection">
+                    <h2>Выберите рейс</h2>
+                    
+                    <div class="flight-options">
+                        <div class="flight-type">
+                            <label class="radio-container">
+                                <input type="radio" name="flight-type" checked>
+                                <span class="radio-checkmark"></span>
+                                В одну сторону
+                            </label>
+                            <label class="radio-container">
+                                <input type="radio" name="flight-type">
+                                <span class="radio-checkmark"></span>
+                                Туда и обратно
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="from">Откуда</label>
+                                <select id="from" required>
+                                    <option value="">Выберите город</option>
+                                    <option value="MOW">Москва (SVO)</option>
+                                    <option value="LED">Санкт-Петербург (LED)</option>
+                                    <option value="KZN">Казань (KZN)</option>
+                                    <option value="LON">Лондон (LHR)</option>
+                                    <option value="PAR">Париж (CDG)</option>
+                                    <option value="BER">Берлин (BER)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="to">Куда</label>
+                                <select id="to" required>
+                                    <option value="">Выберите город</option>
+                                    <option value="MOW">Москва (SVO)</option>
+                                    <option value="LED">Санкт-Петербург (LED)</option>
+                                    <option value="KZN">Казань (KZN)</option>
+                                    <option value="LON">Лондон (LHR)</option>
+                                    <option value="PAR">Париж (CDG)</option>
+                                    <option value="BER">Берлин (BER)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="departure">Дата вылета</label>
+                                <input type="date" id="departure" required>
+                            </div>
+                            
+                            <div class="form-group return-date-group">
+                                <label for="return">Дата возвращения</label>
+                                <input type="date" id="return" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="passengers">Пассажиры</label>
+                                <select id="passengers" required>
+                                    <option value="1">1 пассажир</option>
+                                    <option value="2">2 пассажира</option>
+                                    <option value="3">3 пассажира</option>
+                                    <option value="4">4 пассажира</option>
+                                    <option value="5">5 пассажиров</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="class">Класс</label>
+                                <select id="class" required>
+                                    <option value="economy">Эконом</option>
+                                    <option value="comfort">Комфорт</option>
+                                    <option value="business">Бизнес</option>
+                                    <option value="first">Первый</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="next-step">Продолжить</button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="passenger-info">
+                    <h2>Информация о пассажирах</h2>
+                    
+                    <div class="passenger-form">
+                        <div class="passenger-tabs">
+                            <button type="button" class="passenger-tab active" data-passenger="1">Пассажир 1</button>
+                            <button type="button" class="passenger-tab" data-passenger="2">Пассажир 2</button>
+                            <button type="button" class="passenger-tab" data-passenger="3">Пассажир 3</button>
+                        </div>
+
+                        <div class="passenger-content active" data-passenger="1">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name-1">Имя</label>
+                                    <input type="text" id="first-name-1" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="last-name-1">Фамилия</label>
+                                    <input type="text" id="last-name-1" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dob-1">Дата рождения</label>
+                                    <input type="date" id="dob-1" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="document-1">Тип документа</label>
+                                    <select id="document-1" required>
+                                        <option value="passport">Паспорт</option>
+                                        <option value="id-card">Удостоверение личности</option>
+                                        <option value="birth-certificate">Свидетельство о рождении</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="doc-number-1">Номер документа</label>
+                                <input type="text" id="doc-number-1" required>
+                            </div>
+                        </div>
+
+                        <div class="passenger-content" data-passenger="2">
+                            <!-- Аналогичная форма для пассажира 2 -->
+                        </div>
+
+                        <div class="passenger-content" data-passenger="3">
+                            <!-- Аналогичная форма для пассажира 3 -->
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="prev-step">Назад</button>
+                        <button type="button" class="next-step">Продолжить</button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="payment-info">
+                    <h2>Оплата</h2>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-tabs">
+                            <button type="button" class="payment-tab active" data-method="card">Банковская карта</button>
+                            <button type="button" class="payment-tab" data-method="paypal">PayPal</button>
+                            <button type="button" class="payment-tab" data-method="applepay">Apple Pay</button>
+                        </div>
+
+                        <div class="payment-content active" data-method="card">
+                            <div class="form-group">
+                                <label for="card-number">Номер карты</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Срок действия</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" placeholder="123" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="card-name">Имя на карте</label>
+                                <input type="text" id="card-name" required>
+                            </div>
+                        </div>
+
+                        <div class="payment-content" data-method="paypal">
+                            <p>Вы будете перенаправлены на страницу PayPal для завершения оплаты.</p>
+                        </div>
+
+                        <div class="payment-content" data-method="applepay">
+                            <p>Используйте Apple Pay для быстрой и безопасной оплаты.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="prev-step">Назад</button>
+                        <button type="submit" class="submit-booking">Оплатить и забронировать</button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="confirmation">
+                    <div class="confirmation-message">
+                        <img src="iconskyway/checkmark.png" alt="Успешно" class="checkmark-icon">
+                        <h2>Бронирование подтверждено!</h2>
+                        <p>Ваш номер бронирования: <strong>SKY2025-789456</strong></p>
+                        <p>Детали вашего рейса были отправлены на ваш email.</p>
+                        <a href="index.html" class="back-to-main-btn">Вернуться на главную</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img class="logo-icon" src="iconskyway/logo2.png" alt="Логотип СкайВэй">
+                        <span class="footer-logo-text">Аэропорт СкайВэй</span>
+                    </a>
+                    <p>Ваши ворота к исключительным путешествиям. Соединяем людей и места с комфортом и удобством.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">ВК</a>
+                        <a href="#" class="social-link">Telegram</a>
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="index.html#flights">Информация о рейсах</a></li>
+                        <li><a href="index.html#map">Парковка и транспорт</a></li>
+                        <li><a href="index.html#map">Магазины и рестораны</a></li>
+                        <li><a href="index.html#guides">Информация о безопасности</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Свяжитесь с нами</h3>
+                    <address>
+                        <p>Международный Аэропорт СкайВэй,<br>улица Авиации 123, Скайвилль</p>
+                        <p>Телефон: +7 (555) 123-4567</p>
+                        <p>Email: info@skywayairport.com</p>
+                    </address>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Международный Аэропорт СкайВэй. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия обслуживания</a>
+                    <a href="#">Политика cookie</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Переключение между шагами бронирования
+        document.querySelectorAll('.next-step').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentSection = this.closest('.form-section');
+                const nextSection = currentSection.nextElementSibling;
+                
+                currentSection.classList.remove('active');
+                nextSection.classList.add('active');
+                
+                // Обновление шагов прогресса
+                const currentStep = document.querySelector('.step.active');
+                const nextStep = currentStep.nextElementSibling;
+                
+                currentStep.classList.remove('active');
+                nextStep.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.prev-step').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentSection = this.closest('.form-section');
+                const prevSection = currentSection.previousElementSibling;
+                
+                currentSection.classList.remove('active');
+                prevSection.classList.add('active');
+                
+                // Обновление шагов прогресса
+                const currentStep = document.querySelector('.step.active');
+                const prevStep = currentStep.previousElementSibling;
+                
+                currentStep.classList.remove('active');
+                prevStep.classList.add('active');
+            });
+        });
+
+        // Переключение между пассажирами
+        document.querySelectorAll('.passenger-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const passengerId = this.getAttribute('data-passenger');
+                
+                document.querySelectorAll('.passenger-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.passenger-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.querySelector(`.passenger-content[data-passenger="${passengerId}"]`).classList.add('active');
+            });
+        });
+
+        // Переключение между методами оплаты
+        document.querySelectorAll('.payment-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const method = this.getAttribute('data-method');
+                
+                document.querySelectorAll('.payment-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.payment-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.querySelector(`.payment-content[data-method="${method}"]`).classList.add('active');
+            });
+        });
+
+        // Включение/выключение поля даты возвращения
+        document.querySelectorAll('input[name="flight-type"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const returnDateGroup = document.querySelector('.return-date-group');
+                const returnInput = document.getElementById('return');
+                
+                if (this.value === 'round-trip') {
+                    returnInput.disabled = false;
+                    returnInput.required = true;
+                    returnDateGroup.style.opacity = '1';
+                } else {
+                    returnInput.disabled = true;
+                    returnInput.required = false;
+                    returnDateGroup.style.opacity = '0.5';
+                }
+            });
+        });
+
+        // Обработка отправки формы
+        document.querySelector('.booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь будет логика отправки данных на сервер
+            // Пока просто покажем подтверждение
+            
+            const paymentSection = document.getElementById('payment-info');
+            const confirmationSection = document.getElementById('confirmation');
+            
+            paymentSection.classList.remove('active');
+            confirmationSection.classList.add('active');
+            
+            // Обновление шагов прогресса
+            const currentStep = document.querySelector('.step.active');
+            const nextStep = currentStep.nextElementSibling;
+            
+            currentStep.classList.remove('active');
+            nextStep.classList.add('active');
+            
+            // Прокрутка к верху
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

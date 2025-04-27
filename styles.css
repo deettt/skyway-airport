@@ -780,3 +780,315 @@ body {
 .board-content.active {
     display: block;
 }
+
+
+
+
+
+
+
+/* Дополнения к существующему CSS */
+
+/* Стили для страницы бронирования */
+.booking-hero {
+    background: var(--airport-blue);
+    color: white;
+    padding: 6rem 0 3rem;
+}
+
+.booking-header {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.booking-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.booking-header p {
+    font-size: 1.125rem;
+    opacity: 0.9;
+}
+
+.booking-form-section {
+    padding: 3rem 0 5rem;
+}
+
+.booking-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.booking-steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(var(--airport-blue), 0.1);
+    z-index: 0;
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 2px solid rgba(var(--airport-blue), 0.2);
+    color: var(--airport-blue);
+    font-weight: 500;
+}
+
+.step.active {
+    background: var(--airport-blue);
+    color: white;
+    border-color: var(--airport-blue);
+}
+
+.booking-form {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--airport-blue-dark);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(var(--airport-blue), 0.2);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--airport-teal);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.radio-container {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    padding-left: 1.75rem;
+}
+
+.radio-checkmark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1.25rem;
+    width: 1.25rem;
+    background-color: white;
+    border: 2px solid rgba(var(--airport-blue), 0.4);
+    border-radius: 50%;
+}
+
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-container input:checked ~ .radio-checkmark {
+    background-color: var(--airport-blue);
+    border-color: var(--airport-blue);
+}
+
+.radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio-container input:checked ~ .radio-checkmark:after {
+    display: block;
+}
+
+.radio-container .radio-checkmark:after {
+    top: 3px;
+    left: 3px;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: white;
+}
+
+.flight-options {
+    margin-bottom: 2rem;
+}
+
+.flight-type {
+    margin-bottom: 2rem;
+}
+
+.passenger-tabs, .payment-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.passenger-tab, .payment-tab {
+    padding: 0.5rem 1rem;
+    background: rgba(var(--airport-blue), 0.1);
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.passenger-tab.active, .payment-tab.active {
+    background: var(--airport-blue);
+    color: white;
+}
+
+.passenger-content {
+    display: none;
+}
+
+.passenger-content.active {
+    display: block;
+}
+
+.payment-content {
+    display: none;
+}
+
+.payment-content.active {
+    display: block;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.prev-step, .next-step, .submit-booking {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.prev-step {
+    background: white;
+    border: 1px solid rgba(var(--airport-blue), 0.4);
+    color: var(--airport-blue);
+}
+
+.prev-step:hover {
+    background: rgba(var(--airport-blue), 0.1);
+}
+
+.next-step, .submit-booking {
+    background: var(--airport-teal);
+    color: white;
+    border: none;
+}
+
+.next-step:hover, .submit-booking:hover {
+    background: var(--airport-blue);
+}
+
+.confirmation-message {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.checkmark-icon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+.confirmation-message h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--airport-blue);
+}
+
+.confirmation-message p {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.back-to-main-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--airport-blue);
+    color: white;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.back-to-main-btn:hover {
+    background: var(--airport-blue-dark);
+}
+
+.home-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.back-to-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(var(--airport-blue), 0.1);
+    transition: all 0.3s;
+}
+
+.back-to-main:hover {
+    background: rgba(var(--airport-blue), 0.2);
+}
+
+.return-date-group {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
